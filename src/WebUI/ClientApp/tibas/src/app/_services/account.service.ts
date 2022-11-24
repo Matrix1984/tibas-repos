@@ -36,9 +36,19 @@ export class AccountService {
     }
 
     logout() {
-        // remove user from local storage and set current user to null
-        localStorage.removeItem('user');
-        this.userSubject.next(null);
-        this.router.navigate(['/login']);
+
+      this.http.post(this._requestUrl+"/Logout",{}).subscribe({
+         next :()=>{
+            // remove user from local storage and set current user to null
+            localStorage.removeItem('user');
+            this.userSubject.next(null);
+            this.router.navigate(['/login']);
+         },
+         error: (err)=>{
+          console.error(err);
+         }
+      })
+
+
     }
 }
