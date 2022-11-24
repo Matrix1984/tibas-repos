@@ -14,7 +14,7 @@ public class GitHubRepoHttpService : IGitHubRepoHttpService
 
     public async Task<GitHubRepoVM> SearchReposByName(string name)
     {
-        var res= await _httpClient.GetAsync("https://api.github.com/search/repositories?q=virus");  
+        _httpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("request"); 
 
 #pragma warning disable CS8603 // Possible null reference return.
         return await _httpClient.GetFromJsonAsync<GitHubRepoVM>(
