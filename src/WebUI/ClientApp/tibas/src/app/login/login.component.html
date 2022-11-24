@@ -22,5 +22,8 @@
               </button>
           </div>
       </form>
+      <div *ngIf="hasLoginError" id="error">
+          {{errorMessage}}
+      </div>
   </div>
 </div>

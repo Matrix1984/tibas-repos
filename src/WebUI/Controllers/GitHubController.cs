@@ -7,7 +7,7 @@ namespace Tibas.WebUI.Controllers;
 [Authorize]
 public class GitHubController : ApiControllerBase
 {
-    [HttpGet("{searchName}")]
+    [HttpGet]
     public async Task<GitHubRepoVM> Get(string searchName)
     {
         return await Mediator.Send(new GetHubReposQuery(searchName));

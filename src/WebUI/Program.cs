@@ -27,7 +27,7 @@ else
     app.UseHsts();
 }
 
-app.UseCors();
+app.UseCors("AllCors");
 
 app.UseHealthChecks("/health");
 

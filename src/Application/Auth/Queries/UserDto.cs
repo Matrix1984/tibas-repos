@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Tibas.Application.Auth.Queries;
 public class UserDto
 {
-    public string Id { get; set; }
-
-    public string Name { get; set; }
+    public string Id { get; set; } 
+    public string Name { get; set; } 
+    public string Token { get; set; }
 }

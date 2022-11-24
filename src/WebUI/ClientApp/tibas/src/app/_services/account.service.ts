@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../_models/account/user.type';
 import { environment } from 'src/environments/enviroment';
+import { LoginResponse } from '../_models/account/login-response.type';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -26,11 +27,11 @@ export class AccountService {
     }
 
     login(username:string, password:string) {
-        return this.http.post<User>(this._requestUrl, { "loginName":username, "password":password })
-            .pipe(map(user => {
-                localStorage.setItem('user', JSON.stringify(user));
-                this.userSubject.next(user);
-                return user;
+        return this.http.post<LoginResponse>(this._requestUrl, { "loginName":username, "password":password })
+            .pipe(map(res => {
+                localStorage.setItem('user', JSON.stringify(res.user));
+                this.userSubject.next(res.user);
+                return res;
             }));
     }
 

@@ -12,6 +12,8 @@ export class LoginComponent {
   form!: FormGroup;
   loading = false;
   submitted = false;
+  hasLoginError:boolean=false;
+  errorMessage:string='';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,6 +35,7 @@ export class LoginComponent {
   }
 
   onSubmit() {
+
     this.submitted = true;
 
     if (this.form.invalid) {
@@ -41,17 +44,28 @@ export class LoginComponent {
 
     this.loading = true;
 
+    this.hasLoginError=false;
+    this.errorMessage='';
+
     this.accountService
       .login(this.username?.value, this.password?.value)
       .subscribe({
-        next: () => {
-          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-          this.router.navigateByUrl(returnUrl);
+        next: (data) => {
+          if(data.errorCode==0){
+            const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+            this.router.navigateByUrl(returnUrl);
+          }
+          else{
+            this.hasLoginError=true;
+            this.errorMessage=data.error;
+          }
         },
         error: (error) => {
           console.error(error);
-          this.loading = false;
         },
+        complete:() => {
+          this.loading = false;
+        }
       });
   }
 }

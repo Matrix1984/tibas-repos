@@ -66,11 +66,11 @@ public static class ConfigureServices
 
         services.AddCors(options =>
         {
-            options.AddPolicy("EnableCORS", builder =>
+            options.AddPolicy("AllCors", builder =>
             {
-                builder.AllowAnyOrigin()
-                .AllowAnyHeader()
-                .AllowAnyMethod();
+                builder.AllowAnyOrigin();
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
             });
         });
 
