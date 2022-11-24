@@ -1,4 +1,4 @@
-<div *ngFor="let fav in favourites">
+<div *ngFor="let fav of favourites">
   <section>
     <h2 class="repo-title">{{ fav.gitHubName }}</h2>
     <div>
@@ -13,7 +13,7 @@
     </div>
     <div>
       <p>
-        <button type="button" (click)="unfavouriteRepo(fav)">Favourite</button>
+        <button type="button" (click)="unfavouriteRepo(fav)">Unfavourite</button>
       </p>
     </div>
   </section>

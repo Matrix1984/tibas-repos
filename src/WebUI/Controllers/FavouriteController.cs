@@ -28,7 +28,7 @@ public class FavouriteController : ApiControllerBase
         return await Mediator.Send(new GetFavouritesQuery(_currentUserService.UserId));
     } 
 
-    [HttpDelete("{id}")]
+    [HttpDelete]
     public async Task<ActionResult> Delete(int id)
     {
         await Mediator.Send(new DeleteFavouriteCommand(id, _currentUserService.UserId));
