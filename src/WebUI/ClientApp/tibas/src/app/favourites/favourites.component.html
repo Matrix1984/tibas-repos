@@ -1,0 +1,20 @@
+<div *ngFor="let fav in favourites">
+  <section>
+    <h2 class="repo-title">{{ fav.gitHubName }}</h2>
+    <div>
+      <p class="repo-description">
+        <span>[{{ fav.gitHubId }}]</span>
+        <span>{{ fav.description }}</span>
+      </p>
+      <p class="repo-owner">
+        <span>Owner Name:</span>
+        <span>{{ fav.gitOwnerName }}</span>
+      </p>
+    </div>
+    <div>
+      <p>
+        <button type="button" (click)="unfavouriteRepo(fav)">Favourite</button>
+      </p>
+    </div>
+  </section>
+</div>

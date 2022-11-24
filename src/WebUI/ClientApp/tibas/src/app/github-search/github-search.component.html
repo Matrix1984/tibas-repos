@@ -1,0 +1,42 @@
+<div>
+  <form #form="ngForm" (ngSubmit)="searchReposByName()">
+    <p>
+      <input
+        type="text"
+        class="form-control"
+        id="repoSearchInput"
+        required
+        [(ngModel)]="repoSearchInput"
+        name="repoSearchInput"
+        required
+      />
+    </p>
+    <p>
+      <button type="submit">Search</button>
+    </p>
+  </form>
+  <p *ngIf="errorMessage">
+    {{ errorMessage }}
+  </p>
+</div>
+
+<div *ngFor="let repo in githubrepos">
+  <section>
+    <h2 class="repo-title">{{ repo.gitHubName }}</h2>
+    <div>
+      <p class="repo-description">
+        <span>[{{ repo.gitHubId }}]</span>
+        <span>{{ repo.description }}</span>
+      </p>
+      <p class="repo-owner">
+        <span>Owner Name:</span>
+        <span>{{ repo.gitOwnerName }}</span>
+      </p>
+    </div>
+    <div>
+      <p>
+        <button type="button" (click)="favouriteRepo(repo)">Favourite</button>
+      </p>
+    </div>
+  </section>
+</div>
