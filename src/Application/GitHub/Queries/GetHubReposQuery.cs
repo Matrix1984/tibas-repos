@@ -1,8 +1,6 @@
 ﻿using MediatR;
 using Tibas.Application.Common.Interfaces;
 using Tibas.Application.Common.Security;
-using Tibas.Application.Favourites.Commands.CreateFavourite;
-using Tibas.Application.Favourites.Queries;
 
 namespace Tibas.Application.GitHub.Queries;
 
@@ -17,7 +15,7 @@ public class GetHubReposQueryHandler : IRequestHandler<GetHubReposQuery, GitHubR
     }
 
     public async Task<GitHubRepoVM> Handle(GetHubReposQuery request, CancellationToken cancellationToken)
-    { 
+    {
         return await _gitHubRepoHttpService.SearchReposByName(request.Name);
     }
 }

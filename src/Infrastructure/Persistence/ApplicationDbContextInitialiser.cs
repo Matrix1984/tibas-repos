@@ -54,7 +54,7 @@ public class ApplicationDbContextInitialiser
     public async Task TrySeedAsync()
     {
         // Default user
-        var administrator = new ApplicationUser { UserName = "administrator@localhost", Email = "administrator@localhost" };
+        var administrator = new ApplicationUser { Id= "51b01743-76d0-4748-ad2e-af77b4c4a361", UserName = "administrator@localhost", Email = "administrator@localhost" };
 
         if (_userManager.Users.All(u => u.UserName != administrator.UserName))
         {

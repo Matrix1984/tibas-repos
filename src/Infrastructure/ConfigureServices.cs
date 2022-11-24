@@ -30,7 +30,7 @@ public static class ConfigureServices
                 .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(retryAttempt));
 
         services.AddHttpClient<IGitHubRepoHttpService, GitHubRepoHttpService>(o =>
-                      o.BaseAddress = new Uri(configuration["GitHub:BaseUrl"]))
+                      o.BaseAddress = new Uri(configuration["GitHub:Url"]))
                      .AddPolicyHandler(retryPolicy);
 
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());

@@ -7,7 +7,6 @@ using Microsoft.IdentityModel.Tokens;
 using Tibas.Application.Common.Interfaces;
 using Tibas.Domain.Exceptions;
 using Tibas.Domain.ValueObjects;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Tibas.Application.Auth.Queries;
 public record GETJWTQuery(string LoginName, string Password) : IRequest<TokenResponseVM>;
@@ -33,11 +32,11 @@ public class GETJWTQueryHandler : IRequestHandler<GETJWTQuery, TokenResponseVM>
         try
         {
             userVM = await _identityService.LoginAsync(request.LoginName, request.Password);
-            tokenResponseVM.User= userVM;
+            tokenResponseVM.User = userVM;
         }
         catch (AuthorizationException ex)
         {
-            return new TokenResponseVM() { Error= ex.Message, ErrorCode=403 };
+            return new TokenResponseVM() { Error = ex.Message, ErrorCode = 403 };
         }
 
         tokenResponseVM.User.Token = new JwtSecurityTokenHandler().WriteToken(GetJWTTokenOptions(userVM));
